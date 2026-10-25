@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ConstructIQ — Multimodal Construction Intelligence Platform</title>
+  <meta name="description" content="AI-powered multimodal construction intelligence platform for real-time site monitoring, safety analytics, document intelligence, and project management." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.1/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 21h18M3 7v14M21 7v14M6 21V7M18 21V7M9 21v-4h6v4M9 3h6l3 4H6L9 3z" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="logo-text">ConstructIQ</span>
+      </div>
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <span class="nav-label">Overview</span>
+        <a class="nav-item active" data-page="dashboard" href="#">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item" data-page="projects" href="#">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Projects</span>
+          <span class="badge">4</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <span class="nav-label">Intelligence</span>
+        <a class="nav-item" data-page="vision" href="#">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
+          <span>AI Vision</span>
+          <span class="badge live">LIVE</span>
+        </a>
+        <a class="nav-item" data-page="documents" href="#">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2"/><line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2"/><line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2"/><polyline points="10 9 9 9 8 9" stroke="currentColor" stroke-width="2"/></svg>
+          <span>Doc Intelligence</span>
+        </a>
+        <a class="nav-item" data-page="sensors" href="#">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Sensor Analytics</span>
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <span class="nav-label">Operations</span>
+        <a class="nav-item" data-page="safety" href="#">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Safety Monitor</span>
+          <span class="badge alert">3</span>
+        </a>
+        <a class="nav-item" data-page="reports" href="#">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 20V10M12 20V4M6 20v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Reports & AI Insights</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-avatar">JD</div>
+        <div class="user-info">
+          <span class="user-name">John Dawson</span>
+          <span class="user-role">Site Director</span>
+        </div>
+        <div class="status-dot online"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main" id="main">
+    <!-- Top Bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title" id="pageTitle">Dashboard</h1>
+        <div class="breadcrumb" id="breadcrumb">
+          <span>ConstructIQ</span><span class="sep">›</span><span>Overview</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Search projects, documents..." id="globalSearch" />
+        </div>
+        <button class="icon-btn" id="notifBtn" aria-label="Notifications">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="notif-dot"></span>
+        </button>
+        <button class="icon-btn" aria-label="Settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2"/></svg>
+        </button>
+        <div class="theme-toggle" id="themeToggle" title="Toggle theme">
+          <div class="theme-dot"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Pages -->
+    <div class="pages-container" id="pagesContainer">
+
+      <!-- DASHBOARD PAGE -->
+      <section class="page active" id="page-dashboard">
+        <div class="hero-banner">
+          <div class="hero-content">
+            <p class="hero-tag">AI-Powered Platform</p>
+            <h2>Construction Intelligence at <span class="gradient-text">Scale</span></h2>
+            <p class="hero-sub">Real-time multimodal analysis across all your active sites — vision, documents, sensors and predictive insights in one place.</p>
+            <div class="hero-actions">
+              <button class="btn-primary" onclick="navigateTo('vision')">Launch AI Vision</button>
+              <button class="btn-ghost" onclick="navigateTo('reports')">View AI Report</button>
+            </div>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat-card">
+              <span class="hs-val" id="hs-uptime">99.2%</span>
+              <span class="hs-lbl">Platform Uptime</span>
+            </div>
+            <div class="hero-stat-card">
+              <span class="hs-val" id="hs-events">1,284</span>
+              <span class="hs-lbl">Events Today</span>
+            </div>
+            <div class="hero-stat-card">
+              <span class="hs-val acc" id="hs-acc">94.7%</span>
+              <span class="hs-lbl">AI Accuracy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon amber"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <span class="kpi-trend up">+2 this week</span>
+            </div>
+            <div class="kpi-val">4</div>
+            <div class="kpi-lbl">Active Projects</div>
+            <div class="kpi-bar"><div class="kpi-fill" style="width:80%"></div></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2"/></svg></div>
+              <span class="kpi-trend up">↑ 8.3%</span>
+            </div>
+            <div class="kpi-val">87<span class="kpi-unit">%</span></div>
+            <div class="kpi-lbl">Safety Score</div>
+            <div class="kpi-bar"><div class="kpi-fill green-fill" style="width:87%"></div></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon blue"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2"/></svg></div>
+              <span class="kpi-trend up">+12 today</span>
+            </div>
+            <div class="kpi-val">248</div>
+            <div class="kpi-lbl">Docs Processed</div>
+            <div class="kpi-bar"><div class="kpi-fill blue-fill" style="width:62%"></div></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-top">
+              <div class="kpi-icon red"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="2"/><line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+              <span class="kpi-trend down">3 critical</span>
+            </div>
+            <div class="kpi-val">3</div>
+            <div class="kpi-lbl">Active Alerts</div>
+            <div class="kpi-bar"><div class="kpi-fill red-fill" style="width:15%"></div></div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="charts-row">
+          <div class="chart-card wide">
+            <div class="chart-header">
+              <h3>Project Progress Overview</h3>
+              <div class="chart-controls">
+                <button class="chart-btn active" data-chart="progress">Weekly</button>
+                <button class="chart-btn" data-chart="progress">Monthly</button>
+              </div>
+            </div>
+            <canvas id="progressChart" height="200"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header"><h3>Safety Incidents</h3></div>
+            <canvas id="safetyChart" height="200"></canvas>
+          </div>
+        </div>
+
+        <!-- Alert Feed + Sensor Mini -->
+        <div class="bottom-row">
+          <div class="feed-card">
+            <div class="card-header">
+              <h3>Live Event Feed</h3>
+              <span class="live-pill">● LIVE</span>
+            </div>
+            <div class="event-list" id="eventFeed"></div>
+          </div>
+          <div class="map-card">
+            <div class="card-header"><h3>Site Map Overview</h3></div>
+            <div class="site-map" id="siteMap">
+              <div class="map-bg"></div>
+              <div class="map-pin" style="left:30%;top:25%" data-tip="Site A – Active"><div class="pin-dot green"></div><span>Site A</span></div>
+              <div class="map-pin" style="left:60%;top:40%" data-tip="Site B – Active"><div class="pin-dot amber"></div><span>Site B</span></div>
+              <div class="map-pin" style="left:45%;top:65%" data-tip="Site C – Warning"><div class="pin-dot red pulse"></div><span>Site C</span></div>
+              <div class="map-pin" style="left:75%;top:20%" data-tip="Site D – Active"><div class="pin-dot green"></div><span>Site D</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS PAGE -->
+      <section class="page" id="page-projects">
+        <div class="page-toolbar">
+          <div class="toolbar-left">
+            <input class="filter-input" type="text" placeholder="Filter projects..." id="projectFilter" />
+            <select class="filter-select" id="projectStatus">
+              <option value="">All Status</option>
+              <option value="active">Active</option>
+              <option value="planning">Planning</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+          <button class="btn-primary" id="addProjectBtn">+ New Project</button>
+        </div>
+        <div class="project-grid" id="projectGrid"></div>
+      </section>
+
+      <!-- AI VISION PAGE -->
+      <section class="page" id="page-vision">
+        <div class="vision-layout">
+          <div class="vision-feed-panel">
+            <div class="card-header">
+              <h3>Live Camera Feed — Site C (Gate 2)</h3>
+              <div class="feed-controls">
+                <button class="icon-btn active" id="playPauseBtn" title="Play/Pause">▶</button>
+                <select class="filter-select small" id="cameraSelect">
+                  <option>Camera 1 — Main Gate</option>
+                  <option>Camera 2 — Crane Zone</option>
+                  <option>Camera 3 — Foundation</option>
+                </select>
+              </div>
+            </div>
+            <div class="vision-canvas-wrap" id="visionWrap">
+              <canvas id="visionCanvas" width="800" height="450"></canvas>
+              <div class="vision-overlay" id="visionOverlay">
+                <div class="det-box" style="left:12%;top:20%;width:80px;height:160px" data-label="Worker ✓ Hard Hat" data-conf="98.2%"></div>
+                <div class="det-box danger" style="left:55%;top:30%;width:90px;height:150px" data-label="Worker ✗ No PPE" data-conf="96.5%"></div>
+                <div class="det-box equipment" style="left:70%;top:10%;width:140px;height:200px" data-label="Excavator" data-conf="99.1%"></div>
+                <div class="zone-danger" style="left:50%;top:25%;width:200px;height:220px"><span>⚠ DANGER ZONE</span></div>
+              </div>
+              <div class="vision-hud">
+                <div class="hud-stat"><span class="hud-val" id="detCount">3</span><span class="hud-lbl">Detections</span></div>
+                <div class="hud-stat"><span class="hud-val warn" id="violCount">1</span><span class="hud-lbl">Violations</span></div>
+                <div class="hud-stat"><span class="hud-val" id="fpsVal">28</span><span class="hud-lbl">FPS</span></div>
+                <div class="hud-stat"><span class="hud-val ok" id="confVal">97%</span><span class="hud-lbl">Avg Conf</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="vision-sidebar">
+            <div class="vs-card">
+              <h4>Detection Log</h4>
+              <div class="det-log" id="detLog"></div>
+            </div>
+            <div class="vs-card">
+              <h4>PPE Compliance</h4>
+              <canvas id="ppeChart" height="160"></canvas>
+            </div>
+            <div class="vs-card">
+              <h4>Violation Summary</h4>
+              <div class="violation-list" id="violList">
+                <div class="viol-item critical"><span class="viol-type">No Hard Hat</span><span class="viol-count">2</span></div>
+                <div class="viol-item warn"><span class="viol-type">No Safety Vest</span><span class="viol-count">1</span></div>
+                <div class="viol-item ok"><span class="viol-type">Restricted Zone</span><span class="viol-count">0</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOCUMENT INTELLIGENCE PAGE -->
+      <section class="page" id="page-documents">
+        <div class="doc-layout">
+          <div class="doc-upload-zone" id="dropZone">
+            <div class="upload-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="17 8 12 3 7 8" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="3" x2="12" y2="15" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <p class="upload-title">Drop documents here or <span class="upload-link">browse</span></p>
+            <p class="upload-sub">Supports PDF, DOCX, DWG, IFC, CSV — AI will extract and analyze</p>
+            <input type="file" id="docFileInput" multiple accept=".pdf,.docx,.csv,.txt" style="display:none" />
+          </div>
+          <div class="doc-grid" id="docGrid"></div>
+        </div>
+        <div class="doc-analysis-panel" id="docAnalysis" style="display:none">
+          <div class="da-header">
+            <h3 id="daTitle">Document Analysis</h3>
+            <button class="btn-ghost small" onclick="document.getElementById('docAnalysis').style.display='none'">✕ Close</button>
+          </div>
+          <div class="da-tabs">
+            <button class="da-tab active" data-tab="summary">AI Summary</button>
+            <button class="da-tab" data-tab="entities">Key Entities</button>
+            <button class="da-tab" data-tab="clauses">Risk Clauses</button>
+          </div>
+          <div class="da-body" id="daBody"></div>
+        </div>
+      </section>
+
+      <!-- SENSORS PAGE -->
+      <section class="page" id="page-sensors">
+        <div class="sensor-grid-top">
+          <div class="sensor-status-card" id="sStat1"><div class="ss-icon green">●</div><div><div class="ss-name">Crane Load Cell</div><div class="ss-val" id="sv1">12.4 T</div></div></div>
+          <div class="sensor-status-card" id="sStat2"><div class="ss-icon amber">●</div><div><div class="ss-name">Air Quality (PM2.5)</div><div class="ss-val" id="sv2">48 µg/m³</div></div></div>
+          <div class="sensor-status-card" id="sStat3"><div class="ss-icon green">●</div><div><div class="ss-name">Vibration (Pile)</div><div class="ss-val" id="sv3">2.1 mm/s</div></div></div>
+          <div class="sensor-status-card" id="sStat4"><div class="ss-icon green">●</div><div><div class="ss-name">Temperature</div><div class="ss-val" id="sv4">34.2 °C</div></div></div>
+          <div class="sensor-status-card" id="sStat5"><div class="ss-icon red">●</div><div><div class="ss-name">Noise Level</div><div class="ss-val warn" id="sv5">92 dB</div></div></div>
+          <div class="sensor-status-card" id="sStat6"><div class="ss-icon green">●</div><div><div class="ss-name">Soil Moisture</div><div class="ss-val" id="sv6">18%</div></div></div>
+        </div>
+        <div class="charts-row">
+          <div class="chart-card wide">
+            <div class="chart-header"><h3>Real-Time Sensor Feeds</h3><span class="live-pill">● LIVE</span></div>
+            <canvas id="sensorChart" height="220"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header"><h3>Anomaly Detection</h3></div>
+            <canvas id="anomalyChart" height="220"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- SAFETY PAGE -->
+      <section class="page" id="page-safety">
+        <div class="safety-alerts" id="safetyAlerts"></div>
+        <div class="charts-row" style="margin-top:1.5rem">
+          <div class="chart-card">
+            <div class="chart-header"><h3>Incident Trend (90 days)</h3></div>
+            <canvas id="incidentChart" height="220"></canvas>
+          </div>
+          <div class="chart-card">
+            <div class="chart-header"><h3>Hazard Category</h3></div>
+            <canvas id="hazardChart" height="220"></canvas>
+          </div>
+        </div>
+        <div class="safety-team" id="safetyTeam"></div>
+      </section>
+
+      <!-- REPORTS PAGE -->
+      <section class="page" id="page-reports">
+        <div class="report-hero">
+          <div class="rh-left">
+            <h2>AI-Generated Insights</h2>
+            <p>Powered by multimodal analysis across vision, document, and sensor streams</p>
+          </div>
+          <button class="btn-primary" id="genReportBtn">Generate Full Report</button>
+        </div>
+        <div class="insights-grid" id="insightsGrid"></div>
+        <div class="chart-card" style="margin-top:1.5rem">
+          <div class="chart-header"><h3>Productivity vs. Safety Score — Monthly Trend</h3></div>
+          <canvas id="reportChart" height="220"></canvas>
+        </div>
+      </section>
+
+    </div><!-- end pages-container -->
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="app.js"></script>
+</body>
+</html>
